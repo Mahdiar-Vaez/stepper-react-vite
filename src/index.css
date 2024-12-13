@@ -1,3 +1,38 @@
+@font-face{
+    font-family: 'roya';
+    src: url("./fonts/IRoya.ttf");
+}
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+
+}
+a{
+    text-decoration: none
+
+}
+input,button{
+    font-family: 'roya' ,'sans serif' !important ;
+}
+ul{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.MuiStepIcon-text ,.css-1g86afo-MuiStepIcon-text{
+    font-family: 'roya' ,'sans serif' !important ;
+}
+label{
+    font-family: 'roya' ,'sans serif' !important ;
+    
+}
+.MuiList-root {
+    font-family: 'roya','sens serif' !important;
+}
+ .css-1rju2q6-MuiButtonBase-root-MuiMenuItem-root{
+    font-family: 'roya','sens serif ' !important;
+ }
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

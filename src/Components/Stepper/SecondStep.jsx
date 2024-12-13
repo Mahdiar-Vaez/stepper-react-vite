@@ -1,84 +1,83 @@
-import { Button, TextField } from '@mui/material';
-import React, { useContext, useState } from 'react';
+import { Button, TextField, MenuItem } from '@mui/material';
+import React, { useContext, useEffect, useState } from 'react';
 import { GlobalStepContext } from '../../utils/StepValueContext';
 import useFormFields from '../../utils/useFields';
 
+const cities = ['تهران', 'مشهد', 'کرج', 'شیراز', 'ارومیه', 'قم', 'اصفهان', 'تبریز']; // Replace with your list of cities
+
 export default function SecondStep() {
   const { handleStep, handleUserData, userData } = useContext(GlobalStepContext);
-  const [fields, handleFields] = useFormFields();
-  const [errors, setErrors] = useState({
-    city: '',
-    postalCode: '',
-    nonPostalCode: '',
-  });
-
-  const validateForm = () => {
-    let newErrors = {};
-    if (!fields?.city) {
-      newErrors.city = 'شهر را وارد کنید';
+  const [fields, handleFields,setFields] = useFormFields();
+  useEffect(() => {
+    if (userData) {
+      setFields(userData);
     }
-    if (!fields?.postalCode) {
-      newErrors.postalCode = 'کد پستی را وارد کنید';
-    }
-    if (!fields?.nonPostalCode) {
-      newErrors.nonPostalCode = 'کد غیر پستی را وارد کنید';
-    }
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
-
-  const handleSubmit = () => {
-    if (validateForm()) {
+  }, [userData]);
+ 
+  const handleSubmit = (e) => {
+    e.preventDefault()
+  
       handleUserData(fields);
-      handleStep(3); // Assuming the next step is step 3
-    }
-  };
+      handleStep(3);} // Assuming the next step is step 3
+      console.log("🚀 ~ handleSubmit ~ fields:", fields)
+    
+  
+  console.log("🚀 ~ SecondStep ~ userData:", userData)
 
+  
   return (
-    <div className='bg-slate-100 min-h-[200px] w-[100%] justify-center items-center flex  gap-4 p-4'>
-      <div className='flex flex-col gap-4 w-[30%]'>
-      <TextField
-        placeholder='شهر'
-        style={{ borderRadius: 10 }}
-        variant='outlined'
-        size='small'
-        label='شهر'
-        name='city'
-        value={fields?.city}
-        onChange={handleFields}
-      />
-      {errors.city && <span className='text-red-400'>{errors.city}</span>}
+    <div className='bg-slate-100 h-[400px] w-[100%] justify-center items-center flex  gap-4 p-4'>
+      <form onSubmit={handleSubmit} className='flex px-4 py-14 flex-col gap-4 lg:w-[50%] w-[100%]'>
+        <TextField
+          select
+          placeholder='شهر'
+          style={{ borderRadius: 10 }}
+          variant='outlined'
+          size='small'
+          label='شهر'
+          name='city'
+          required
+          value={fields?.city}
+          onChange={handleFields}
+        >
+          {cities.map((city) => (
+            <MenuItem key={city} value={city}>
+              {city}
+            </MenuItem>
+          ))}
+        </TextField>
 
-      <TextField
+        <TextField
         placeholder='کد پستی'
         style={{ borderRadius: 10 }}
         variant='outlined'
         size='small'
         label='کد پستی'
+        required
         name='postalCode'
         value={fields?.postalCode}
         onChange={handleFields}
       />
-      {errors.postalCode && <span className='text-red-400'>{errors.postalCode}</span>}
 
       <TextField
         placeholder='کد غیر پستی'
         style={{ borderRadius: 10 }}
         variant='outlined'
         size='small'
+        required
         label='کد غیر پستی'
         name='nonPostalCode'
         value={fields?.nonPostalCode}
         onChange={handleFields}
       />
-      {errors.nonPostalCode && <span className='text-red-400'>{errors.nonPostalCode}</span>}
-
-      <Button variant='contained' onClick={handleSubmit}>
-        مرحله بعد
-      </Button>
-      <Button variant='contained' onClick={() => handleStep(1)}>
-        مرحله قبل
-      </Button></div>
+  <div className='flex justify-center gap-3'>  <Button variant='contained' color='success' type='submit'>
+          مرحله بعد
+        </Button>
+        <Button variant='contained' color='error' onClick={() => handleStep(1)}>
+          مرحله قبل
+        </Button></div>
+      
+      </form>
     </div>
   );
 }

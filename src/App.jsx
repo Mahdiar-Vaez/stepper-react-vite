@@ -23,9 +23,9 @@ export default function App() {
   return (
 
       <div className="App w-screen  h-screen bg-blue-950">
-      <h3 className='text-gray-300 bg-slate-700 text-center p-4'>ReactJS Multi Step Application</h3>
-      <div className="center-stepper flex justify-center gap-2 px-12 py-8">
-      <Stepper style={{width: '18%'}} activeStep={step-1} orientation="horizontal">
+      <h3 className='text-gray-300 bg-slate-700 text-center p-4 text-xl'>شمارنده مراحل</h3>
+      <div className=" flex justify-center items-center gap-2 lg:px-12 p-4 lg:py-8">
+      <Stepper style={{width: '60%'}} activeStep={step-1} orientation="horizontal">
     <Step>
       <StepLabel>
         
@@ -41,6 +41,9 @@ export default function App() {
       </div>
       
       { showStep(step)}
+      <div className='h-64'>
+        
+      </div>
       </div>
   )
 }

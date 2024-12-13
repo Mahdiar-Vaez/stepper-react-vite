@@ -29,11 +29,11 @@ export default function FirstStep() {
   };
 
   return (
-    <div className=" p-4  flex justify-center ">
-      <div className=" h-64 w-full lg:w-[70%] bg-blue-300 rounded-xl   justify-center items-center flex flex-col gap-4 p-4 ">
+    <div className=" p-4  flex justify-center h-[400px] items-center bg-slate-100">
+      <div className=" h-64 w-full lg:w-[50%]  rounded-xl   justify-center items-center flex flex-col gap-4  ">
         <form
           onSubmit={handleSubmit}
-          className="px-4 m-2  w-full sm:w-[80%]   gap-5 justify-center flex  flex-col"
+          className="px-4 py-14 m-2  w-full sm:w-[100%]   gap-5 justify-center flex  flex-col"
         >
           <TextField
             placeholder="نام خود را وارد کنید"
@@ -74,7 +74,7 @@ export default function FirstStep() {
             onChange={handleFields}
           />
 
-          <div className="flex justify-center">
+          <div className="flex justify-center self-center lg:w-[30%] w-full">
             <Button
               type="submit"
               sx={{
