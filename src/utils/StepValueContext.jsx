@@ -5,11 +5,13 @@ export const GlobalStepContext = createContext();
 export default function StepValuesContext({ children }) {
   const [userData, setUserData] = useState([]);
   const handleUserData = (data) => {
-    setUserData(...userData,data)
+    setUserData(data)
   };
   const [step, setStep] = useState(1);
-  const handleStep = (index) => {
-    setStep(index);
+  const handleStep = (newStep) => {
+ 
+    
+    setStep(newStep);
   };
   const [finalData, setFinalData] = useState();
   const handleFinalData = (data) => {

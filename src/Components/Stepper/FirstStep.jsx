@@ -1,115 +1,104 @@
 import { Box, Button, TextField } from "@mui/material";
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { GlobalStepContext } from "../../utils/StepValueContext";
+import useFormFields from "../../utils/useFields";
 
 export default function FirstStep() {
-  const { handleStep,handleUserData ,userData} = useContext(GlobalStepContext);
-  const [inputs, setInputs] = useState({
-    name: "",
-    lastName: "",
-    email: "",
-  });
-  const [errors, setErrors] = useState({
-    name: "",
-    lastName: "",
-    email: "",
-  });
+  const { handleStep, handleUserData, userData } =
+    useContext(GlobalStepContext);
+  const [fields, handleFields, setFields] = useFormFields();
 
-  const handleInputsData = (e) => {
-    setInputs({
-      ...inputs,
-      [e.target.name]: e.target.value,
-    });
-  };
-console.log(userData)
-  const validateForm = () => {
-    let newErrors = {};
-    if (!inputs.name) {
-      newErrors.name = "نام شما میبایست فارسی باشد";
+  useEffect(() => {
+    if (userData) {
+      setFields(userData);
     }
-    if (!inputs.lastName) {
-      newErrors.lastName = "نام خانوادگی را وارد کنید";
-    }
-    if (!inputs.email) {
-      newErrors.email = "ایمیل خود را وارد کنید";
-    }
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
-  console.log(inputs)
-  const handleSubmit = () => {
-    if (validateForm()) {
-      handleUserData(inputs)
-      handleStep(2);
+  }, [userData]);
 
+  console.log(fields);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (userData && Object.keys(userData).length > 0) {
+      // User data is already present, do not overwrite it
+      handleUserData({});
     }
+    // User data is not present, clear it before setting new data
+    handleUserData(fields);
+
+    handleStep(2);
   };
 
   return (
-    <div className="bg-slate-100 min-h-[200px] w-[100%] justify-center items-center flex flex-col gap-4 p-4">
-      <div className="w-[30%] gap-5 justify-center flex flex-col">
-        <TextField
-          placeholder="نام خود را وارد کنید"
-          className="rounded-md"
-          variant="outlined"
-          size="small"
-          label="نام"
-          name="name"
-          value={inputs.name}
-          onChange={handleInputsData}
-          helperText="نام شما میبایست فارسی باشد"
-        />
-        {errors.name && <span className="text-red-400">{errors.name}</span>}
+    <div className=" p-4  flex justify-center ">
+      <div className=" h-64 w-full lg:w-[70%] bg-blue-300 rounded-xl   justify-center items-center flex flex-col gap-4 p-4 ">
+        <form
+          onSubmit={handleSubmit}
+          className="px-4 m-2  w-full sm:w-[80%]   gap-5 justify-center flex  flex-col"
+        >
+          <TextField
+            placeholder="نام خود را وارد کنید"
+            className="rounded-md"
+            variant="filled"
+            size="small"
+            label="نام"
+            required
+            name="name"
+            value={fields?.name}
+            onChange={handleFields}
+          />
 
-        <TextField
-          placeholder="نام خانوادگی"
-          className="rounded-md"
-          variant="outlined"
-          size="small"
-          name="lastName"
-          label="نام خانوادگی"
-          value={inputs.lastName}
-          onChange={handleInputsData}
-        />
-        {errors.lastName && <span className="text-red-400">{errors.lastName}</span>}
+          <TextField
+            placeholder="نام خانوادگی"
+            className="rounded-md"
+            variant="filled"
+            size="small"
+            name="lastName"
+            color="info"
+            label="نام خانوادگی"
+            required
+            value={fields?.lastName}
+            onChange={handleFields}
+          />
 
-        <TextField
-          placeholder="ایمیل"
-          className="rounded-md"
-          variant="outlined"
-          name="email"
-          size="small"
-          label="ایمیل خود را وارد کنید"
-          value={inputs.email}
-          onChange={handleInputsData}
-        />
-        {errors.email && <span className="text-red-400">{errors.email}</span>}
+          <TextField
+            color="info"
+            placeholder="example@gmail.com"
+            className="rounded-md"
+            variant="filled"
+            name="email"
+            size="small"
+            label="ایمیل خود را وارد کنید"
+            required
+            type="email"
+            value={fields?.email}
+            onChange={handleFields}
+          />
 
-        <div className="flex justify-center">
-          <Button
-            type="submit"
-            sx={{
-              backgroundColor: "#00818A",
-              color: "white",
-              fontSize: "14px",
-              fontWeight: "600",
-              minWidth: "150px",
-              "&:hover": {
-                backgroundColor: "#005C69",
-              },
-              "&:disabled": {
-                backgroundColor: "#999999",
-              },
-            }}
-            fullWidth
-            onClick={handleSubmit}
-            component={"button"}
-            variant="contained"
-            className="rounded-full"
-          >
-            مرحله بعد
-          </Button>
-        </div>
+          <div className="flex justify-center">
+            <Button
+              type="submit"
+              sx={{
+                backgroundColor: "#00818A",
+                color: "white",
+                fontSize: "14px",
+                fontWeight: "600",
+                minWidth: "150px",
+                "&:hover": {
+                  backgroundColor: "#005C69",
+                },
+                "&:disabled": {
+                  backgroundColor: "#999999",
+                },
+              }}
+              fullWidth
+              component={"button"}
+              variant="contained"
+              className="rounded-full"
+            >
+              مرحله بعد
+            </Button>
+          </div>
+        </form>
       </div>
     </div>
   );

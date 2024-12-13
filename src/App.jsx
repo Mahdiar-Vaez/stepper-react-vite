@@ -7,7 +7,7 @@ import { GlobalStepContext } from './utils/StepValueContext';
 
 export default function App() {
 
-  const {step}=useContext(GlobalStepContext) 
+  const {step,handleStep}=useContext(GlobalStepContext) 
     function showStep(num) {
     switch(num) {
     case 1 :
@@ -22,13 +22,14 @@ export default function App() {
 
   return (
 
-      <div className="App">
-      <header className="App-header">
-      <h3 className='text-gray-300 bg-slate-700 p-4'>ReactJS Multi Step Application</h3>
-      <div className="center-stepper">
+      <div className="App w-screen  h-screen bg-blue-950">
+      <h3 className='text-gray-300 bg-slate-700 text-center p-4'>ReactJS Multi Step Application</h3>
+      <div className="center-stepper flex justify-center gap-2 px-12 py-8">
       <Stepper style={{width: '18%'}} activeStep={step-1} orientation="horizontal">
     <Step>
-      <StepLabel></StepLabel>
+      <StepLabel>
+        
+      </StepLabel>
       </Step>
       <Step>
       <StepLabel></StepLabel>
@@ -38,8 +39,8 @@ export default function App() {
       </Step>
       </Stepper>
       </div>
+      
       { showStep(step)}
-      </header>
       </div>
   )
 }
