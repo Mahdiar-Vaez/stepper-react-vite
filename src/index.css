@@ -14,6 +14,10 @@ a{
 }
 input,button{
     font-family: 'roya' ,'sans serif' !important ;
+    color: white !important;
+    font-weight: 600 !important ;
+    -webkit-appearance: none;
+    margin: 0;
 }
 ul{
     list-style: none;
@@ -25,7 +29,12 @@ ul{
 }
 label{
     font-family: 'roya' ,'sans serif' !important ;
+    color: white !important;
     
+}
+.MuiSelect-select{
+    font-family: 'roya' ,'sans serif' !important ;
+    color: white !important  ;
 }
 .MuiList-root {
     font-family: 'roya','sens serif' !important;
@@ -33,6 +42,93 @@ label{
  .css-1rju2q6-MuiButtonBase-root-MuiMenuItem-root{
     font-family: 'roya','sens serif ' !important;
  }
+ 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+.bgblue {
+    background: linear-gradient(135deg, #fffffff5, #3a4b8a, #ffffff98);
+    padding: 1px;
+    border-radius: 1.2rem;
+    box-shadow: 0px 1rem 1.5rem -0.9rem #000000e1;
+    max-width: 300px;
+  }
+  input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.btn {
+    font-size: 24px;
+    background: transparent;
+    border: none;
+    padding: 1em 1.5em;
+    color: #ffedd3;
+    text-transform: uppercase;
+    position: relative;
+    transition: 0.5s ease;
+    cursor: pointer;
+    
+    /* Add text gradient */
+    background-image: linear-gradient(to right, #ffc506, #eee);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    
+    /* Add text shadow */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 1);
+  }
+  
+  .btn::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 2px;
+    width: 0;
+    background-color: #ffc506;
+    transition: 0.5s ease;
+  }
+  
+  .btn:hover {
+    color: #1e1e2b;
+    transition-delay: 0.5s;
+  }
+  
+  .btn:hover::before {
+    width: 100%;
+  }
+  
+  .btn::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 0;
+    width: 100%;
+    background-color: #ffc506;
+    transition: 0.4s ease;
+    z-index: -1;
+  }
+  
+  .btn:hover::after {
+    height: 100%;
+    transition-delay: 0.4s;
+    color: aliceblue;
+  }
+  
+  p{
+    font-family: 'roya';
+
+  }
+  .card {
+    font-size: 1rem;
+    color: #bec4cf;
+    background: linear-gradient(135deg, #0d1120 0%, #3a4b8a 43%, #0d1120 100%);
+    padding: 1.5rem;
+    border-radius: 1.2rem;
+  }
+  .inputs{
+    color: #3a4b8a !important;
+    flex:1;
+  }

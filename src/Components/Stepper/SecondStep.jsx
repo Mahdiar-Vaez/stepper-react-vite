@@ -26,13 +26,14 @@ export default function SecondStep() {
 
   
   return (
-    <div className='bg-slate-100 h-[400px] w-[100%] justify-center items-center flex  gap-4 p-4'>
-      <form onSubmit={handleSubmit} className='flex px-4 py-14 flex-col gap-4 lg:w-[50%] w-[100%]'>
+    <div className=' bg-blue h-[max-content] w-full lg:w-[80%] justify-center  items-center '>
+      <form onSubmit={handleSubmit} className='card flex lg:flex-row gap-4  flex-col'>
         <TextField
           select
           placeholder='شهر'
+          className='inputs'
           style={{ borderRadius: 10 }}
-          variant='outlined'
+          variant='standard'
           size='small'
           label='شهر'
           name='city'
@@ -48,13 +49,16 @@ export default function SecondStep() {
         </TextField>
 
         <TextField
+                  className='inputs'
+
         placeholder='کد پستی'
         style={{ borderRadius: 10 }}
-        variant='outlined'
-        size='small'
+        variant='standard'        size='small'
         label='کد پستی'
         required
         name='postalCode'
+        type='number'
+
         value={fields?.postalCode}
         onChange={handleFields}
       />
@@ -62,18 +66,19 @@ export default function SecondStep() {
       <TextField
         placeholder='کد غیر پستی'
         style={{ borderRadius: 10 }}
-        variant='outlined'
-        size='small'
+        variant='standard'        size='small'
         required
+        className='inputs'
+          type='number'
         label='کد غیر پستی'
         name='nonPostalCode'
         value={fields?.nonPostalCode}
         onChange={handleFields}
       />
-  <div className='flex justify-center gap-3'>  <Button variant='contained' color='success' type='submit'>
+  <div className='flex justify-center  gap-3'>  <Button variant='contained' sx={{width:'100 !important'}} color='success' type='submit'>
           مرحله بعد
         </Button>
-        <Button variant='contained' color='error' onClick={() => handleStep(1)}>
+        <Button variant='contained' color='error' sx={{width:'100 !important'}} onClick={() => handleStep(1)}>
           مرحله قبل
         </Button></div>
       

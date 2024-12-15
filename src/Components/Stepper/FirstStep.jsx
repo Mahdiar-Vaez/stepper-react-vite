@@ -29,15 +29,14 @@ export default function FirstStep() {
   };
 
   return (
-    <div className=" p-4  flex justify-center h-[400px] items-center bg-slate-100">
-      <div className=" h-64 w-full lg:w-[50%]  rounded-xl   justify-center items-center flex flex-col gap-4  ">
+      <div className=" bg-blue h-[max-content] w-full lg:w-[80%] justify-center  items-center ">
         <form
           onSubmit={handleSubmit}
-          className="px-4 py-14 m-2  w-full sm:w-[100%]   gap-5 justify-center flex  flex-col"
+          className="card flex lg:flex-row gap-4  flex-col "
         >
           <TextField
+            className='inputs'
             placeholder="نام خود را وارد کنید"
-            className="rounded-md"
             variant="filled"
             size="small"
             label="نام"
@@ -48,8 +47,9 @@ export default function FirstStep() {
           />
 
           <TextField
+                      className='inputs'
+
             placeholder="نام خانوادگی"
-            className="rounded-md"
             variant="filled"
             size="small"
             name="lastName"
@@ -61,9 +61,10 @@ export default function FirstStep() {
           />
 
           <TextField
+                      className='inputs'
+
             color="info"
             placeholder="example@gmail.com"
-            className="rounded-md"
             variant="filled"
             name="email"
             size="small"
@@ -77,12 +78,14 @@ export default function FirstStep() {
           <div className="flex justify-center self-center lg:w-[30%] w-full">
             <Button
               type="submit"
+              size="small"
               sx={{
                 backgroundColor: "#00818A",
                 color: "white",
                 fontSize: "14px",
                 fontWeight: "600",
-                minWidth: "150px",
+                
+                width: "125px",
                 "&:hover": {
                   backgroundColor: "#005C69",
                 },
@@ -100,6 +103,5 @@ export default function FirstStep() {
           </div>
         </form>
       </div>
-    </div>
   );
 }
